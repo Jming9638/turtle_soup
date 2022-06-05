@@ -3,10 +3,17 @@ import pandas as pd
 import basehash
 
 def run():
-    st.title("海龟汤")
+    st.set_page_config(page_title="海龟汤", page_icon="🎮")
+    col = st.columns((0.5,0.5,0.5,0.5))
+    with col[0]:
+        st.title("海龟汤")
     df = pd.read_excel("海龟汤.xlsx")
     q_total = df.shape[0]
-    st.write("总题库：", str(q_total))
+    with col[1]:
+        st.header("")
+        st.write("")
+        st.write("总题库：", str(q_total))
+    st.caption("⚠️以下内容纯属虚构，如有不适，请立即停止游戏。")
     
     hash_fn = basehash.base36()
     input_code = st.text_input("Input your code:")
