@@ -11,9 +11,11 @@ def sidebar(q_total):
         if input_num != "":
             try:
                 num = int(input_num)
-                code_num = hash_fn.hash(num)
-                st.write("Your code: {}".format(code_num))
-                
+                if num <= q_total and num > 0:
+                    code_num = hash_fn.hash(num-1)
+                    st.write("Your code: {}".format(code_num))
+                else:
+                    st.write("Your input number is our of the range.")
             except:
                 st.write("Please input a valid number.")
             

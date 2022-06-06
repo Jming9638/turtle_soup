@@ -1,8 +1,11 @@
 import streamlit as st
 import pandas as pd
 import basehash
+import os
 
 from module.sidebar import sidebar
+
+os.environ['STREAMLIT_THEME_BASE'] = 'light'
 
 def run():
     st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="collapsed")
