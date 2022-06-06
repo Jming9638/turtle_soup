@@ -27,8 +27,11 @@ def run():
         st.subheader("汤面：")
         st.write(ques)
         st.write("")
-        st.subheader("汤底：")
-        st.write(ans)
+        
+        ans_btn = st.button("解答")
+        if ans_btn:
+            st.subheader("汤底：")
+            st.write(ans)
         
     
 if __name__ == "__main__":
