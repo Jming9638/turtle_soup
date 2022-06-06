@@ -15,23 +15,25 @@ def run():
         st.write("总题库：", str(q_total))
     st.caption("⚠️以下内容纯属虚构，如有不适，请立即停止游戏。")
     
-    hash_fn = basehash.base36()
     input_code = st.text_input("Input your code:")
-    
     if input_code != "":
+        hash_fn = basehash.base36()
         idx = hash_fn.unhash(input_code)
-        title = df['title'][idx]
-        ques = df['question'][idx]
-        ans = df['answer'][idx]
-        st.header("题目：{}".format(title))
-        st.subheader("汤面：")
-        st.write(ques)
-        st.write("")
         
-        ans_btn = st.button("解答")
-        if ans_btn:
-            st.subheader("汤底：")
-            st.write(ans)
+        try:
+            title = df['title'][idx]
+            ques = df['question'][idx]
+            ans = df['answer'][idx]
+            st.header("题目：{}".format(title))
+            st.subheader("汤面：")
+            st.write(ques)
+            st.write("")
+            ans_btn = st.button("解答")
+            if ans_btn:
+                st.subheader("汤底：")
+                st.write(ans)
+        except:
+            st.write("⚠️Error code. Please find your administrator to get the code.")
         
     
 if __name__ == "__main__":
