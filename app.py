@@ -32,42 +32,42 @@ def run():
         q_btn = st.button("提取")
         
     if input_code != "" or q_btn:
-        try:
-            hash_fn = basehash.base36()
-            idx = hash_fn.unhash(input_code)
-            title = df['title'][idx]
-            ques = df['ques'][idx]
-            ans = df['ans'][idx]
-            st.header("题目：{}".format(title))
-            q_col = st.columns((1.2,2,1.2))
-            with q_col[0]:
-                st.subheader("汤面：")
-            with q_col[2]:
-                st.write("")
-                copy_btn = st.button("复制全文")
-                if copy_btn:
-                    pyperclip.copy(ques)
-                else:
-                    pass
-            st.write(ques)
+#         try:
+        hash_fn = basehash.base36()
+        idx = hash_fn.unhash(input_code)
+        title = df['title'][idx]
+        ques = df['ques'][idx]
+        ans = df['ans'][idx]
+        st.header("题目：{}".format(title))
+        q_col = st.columns((1.2,2,1.2))
+        with q_col[0]:
+            st.subheader("汤面：")
+        with q_col[2]:
             st.write("")
-            
-            btn_col = st.columns((0.6,0.6,3))
-            with btn_col[0]:
-                ans_btn = st.button("解答")
-            if ans_btn:
-                with btn_col[1]:
-                    undo_btn = st.button("收起")
-                st.subheader("汤底：")
-                st.write(ans)
-                if undo_btn:
-                    st.experimental_rerun()
-                else:
-                    pass
+            copy_btn = st.button("复制全文")
+            if copy_btn:
+                pyperclip.copy(ques)
             else:
                 pass
-        except:
-            st.write("⚠️Error code. Please find your administrator or get your code at the sidebar.")
+        st.write(ques)
+        st.write("")
+
+        btn_col = st.columns((0.6,0.6,3))
+        with btn_col[0]:
+            ans_btn = st.button("解答")
+        if ans_btn:
+            with btn_col[1]:
+                undo_btn = st.button("收起")
+            st.subheader("汤底：")
+            st.write(ans)
+            if undo_btn:
+                st.experimental_rerun()
+            else:
+                pass
+        else:
+            pass
+#         except:
+#             st.write("⚠️Error code. Please find your administrator or get your code at the sidebar.")
     else:
         pass
             
