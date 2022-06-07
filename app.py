@@ -8,13 +8,13 @@ from module.sidebar import sidebar
 os.environ['STREAMLIT_THEME_BASE'] = 'light'
 
 def run():
-    st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
+    st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="collapsed")
     col = st.columns((0.5,0.5,0.5,0.5))
     with col[0]:
         st.title("海龟汤")
-    df = pd.read_excel("海龟汤.xlsx")
+    df = pd.read_excel("海龟汤_2.xlsx")
     q_total = df.shape[0]
-    sidebar(q_total) # sidebar function
+    sidebar(q_total)
     
     with col[1]:
         st.header("")
@@ -31,8 +31,8 @@ def run():
         
         try:
             title = df['title'][idx]
-            ques = df['question'][idx]
-            ans = df['answer'][idx]
+            ques = df['ques'][idx]
+            ans = df['ans'][idx]
             st.header("题目：{}".format(title))
             st.subheader("汤面：")
             st.write(ques)
