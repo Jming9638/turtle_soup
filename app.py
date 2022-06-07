@@ -25,7 +25,12 @@ def run():
     col2 = st.columns([1,3])
     with col2[0]:
         input_code = st.text_input("Input your code:")
-    if input_code != "":
+    with col2[1]:
+        st.subheader("")
+        st.write("")
+        q_btn = st.button("提取")
+        
+    if input_code != "" or q_btn:
         hash_fn = basehash.base36()
         idx = hash_fn.unhash(input_code)
         
@@ -37,10 +42,17 @@ def run():
             st.subheader("汤面：")
             st.write(ques)
             st.write("")
-            ans_btn = st.button("解答")
+            
+            btn_col = st.columns((0.6,0.6,3))
+            with btn_col[0]:
+                ans_btn = st.button("解答")
             if ans_btn:
+                with btn_col[1]:
+                    undo_btn = st.button("收起")
                 st.subheader("汤底：")
                 st.write(ans)
+                if undo_btn:
+                    st.experimental_rerun()
         except:
             st.write("⚠️Error code. Please find your administrator to get the code.")
         

@@ -10,9 +10,9 @@ def sidebar(q_total):
         input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total))
         gen_col = st.columns((1,2))
         with gen_col[0]:
-            gen_btn = st.button("Generate")
+            gen_btn = st.button("生成")
             
-        if input_num != "" and gen_btn:
+        if input_num != "" or gen_btn:
             try:
                 num = int(input_num)
                 if num <= q_total and num > 0:
