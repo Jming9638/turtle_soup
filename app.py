@@ -8,7 +8,7 @@ from module.sidebar import sidebar
 os.environ['STREAMLIT_THEME_BASE'] = 'light'
 
 def run():
-    st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
     col = st.columns((0.5,0.5,0.5,0.5))
     with col[0]:
         st.title("海龟汤")
