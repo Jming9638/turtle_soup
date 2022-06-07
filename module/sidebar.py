@@ -25,6 +25,8 @@ def sidebar(q_total):
             except:
                 with gen_col[1]:
                     st.write("Please input a valid number.")
+        else:
+            pass
                 
         st.subheader("游戏规则：")
         st.write("1、《海龟汤》是一款游戏，又叫“是否与此无关”，游戏方法非常简单，在任何地方都可以进行。")

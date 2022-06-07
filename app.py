@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import pyperclip
 import basehash
 import os
 
@@ -38,7 +39,16 @@ def run():
             ques = df['ques'][idx]
             ans = df['ans'][idx]
             st.header("题目：{}".format(title))
-            st.subheader("汤面：")
+            q_col = st.columns((1.2,2,1.2))
+            with q_col[0]:
+                st.subheader("汤面：")
+            with q_col[2]:
+                st.write("")
+                copy_btn = st.button("复制全文")
+                if copy_btn:
+                    pyperclip.copy(ques)
+                else:
+                    pass
             st.write(ques)
             st.write("")
             
@@ -52,8 +62,14 @@ def run():
                 st.write(ans)
                 if undo_btn:
                     st.experimental_rerun()
+                else:
+                    pass
+            else:
+                pass
         except:
             st.write("⚠️Error code. Please find your administrator or get your code at the sidebar.")
+    else:
+        pass
             
     
 if __name__ == "__main__":
