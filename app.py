@@ -22,7 +22,7 @@ def run():
         st.write("总题库：", str(q_total))
     st.caption("⚠️以下内容纯属虚构，如有不适，请立即停止游戏。")
     
-    col2 = st.columns([1,3])
+    col2 = st.columns([1.4,3])
     with col2[0]:
         input_code = st.text_input("Input your code:")
     with col2[1]:
@@ -31,10 +31,9 @@ def run():
         q_btn = st.button("提取")
         
     if input_code != "" or q_btn:
-        hash_fn = basehash.base36()
-        idx = hash_fn.unhash(input_code)
-        
         try:
+            hash_fn = basehash.base36()
+            idx = hash_fn.unhash(input_code)
             title = df['title'][idx]
             ques = df['ques'][idx]
             ans = df['ans'][idx]
@@ -54,8 +53,8 @@ def run():
                 if undo_btn:
                     st.experimental_rerun()
         except:
-            st.write("⚠️Error code. Please find your administrator to get the code.")
-        
+            st.write("⚠️Error code. Please find your administrator or get your code at the sidebar.")
+            
     
 if __name__ == "__main__":
     run()

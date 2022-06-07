@@ -8,7 +8,7 @@ def sidebar(q_total):
     with st.sidebar:
         st.header("Code Generator")
         input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total))
-        gen_col = st.columns((1,2))
+        gen_col = st.columns((0.8,2))
         with gen_col[0]:
             gen_btn = st.button("生成")
             
@@ -20,9 +20,11 @@ def sidebar(q_total):
                     with gen_col[1]:
                         st.markdown("Your code: **{}**".format(code_num), unsafe_allow_html=True)
                 else:
-                    st.write("Your input number is our of the range.")
+                    with gen_col[1]:
+                        st.write("Your input number is out of the range.")
             except:
-                st.write("Please input a valid number.")
+                with gen_col[1]:
+                    st.write("Please input a valid number.")
                 
         st.subheader("游戏规则：")
         st.write("1、《海龟汤》是一款游戏，又叫“是否与此无关”，游戏方法非常简单，在任何地方都可以进行。")
