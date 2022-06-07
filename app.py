@@ -42,13 +42,13 @@ def run():
         q_col = st.columns((1.2,2,1.2))
         with q_col[0]:
             st.subheader("汤面：")
-        with q_col[2]:
-            st.write("")
-            copy_btn = st.button("复制全文")
-            if copy_btn:
-                pyperclip.copy(ques)
-            else:
-                pass
+#         with q_col[2]:
+#             st.write("")
+#             copy_btn = st.button("复制全文")
+#             if copy_btn:
+#                 pyperclip.copy(ques)
+#             else:
+#                 pass
         st.write(ques)
         st.write("")
 
