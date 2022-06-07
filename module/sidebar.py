@@ -8,12 +8,17 @@ def sidebar(q_total):
     with st.sidebar:
         st.header("Code Generator")
         input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total))
-        if input_num != "":
+        gen_col = st.columns((1,2))
+        with gen_col[0]:
+            gen_btn = st.button("Generate")
+            
+        if input_num != "" and gen_btn:
             try:
                 num = int(input_num)
                 if num <= q_total and num > 0:
                     code_num = hash_fn.hash(num-1)
-                    st.write("Your code: {}".format(code_num))
+                    with gen_col[1]:
+                        st.markdown("Your code: **{}**".format(code_num), unsafe_allow_html=True)
                 else:
                     st.write("Your input number is our of the range.")
             except:
