@@ -8,11 +8,11 @@ def sidebar(q_total):
     with st.sidebar:
         st.header("Code Generator")
         input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total))
-        gen_col = st.columns((0.8,2))
-        with gen_col[0]:
-            gen_btn = st.button("生成")
+        gen_col = st.columns((1.5,2))
+        # with gen_col[0]:
+        #     gen_btn = st.button("生成")
             
-        if input_num != "" or gen_btn:
+        if input_num != "": # or gen_btn:
             try:
                 num = int(input_num)
                 if num <= q_total and num > 0:

@@ -26,12 +26,12 @@ def run():
     col2 = st.columns([1.4,3])
     with col2[0]:
         input_code = st.text_input("Input your code:")
-    with col2[1]:
-        st.subheader("")
-        st.write("")
-        q_btn = st.button("提取")
+    # with col2[1]:
+    #     st.subheader("")
+    #     st.write("")
+    #     q_btn = st.button("提取")
         
-    if input_code != "" or q_btn:
+    if input_code != "": # or q_btn:
         try:
             hash_fn = basehash.base36()
             idx = hash_fn.unhash(input_code)
@@ -42,16 +42,16 @@ def run():
             q_col = st.columns((1.2,2,1.2))
             with q_col[0]:
                 st.subheader("汤面：")
-#             with q_col[2]:
-#                 st.write("")
-#                 copy_btn = st.button("复制全文")
-#                 if copy_btn:
-#                     pyperclip.copy(ques)
-#                 else:
-#                     pass
+            # with q_col[2]:
+            #     st.write("")
+            #     copy_btn = st.button("复制全文")
+            #     if copy_btn:
+            #         pyperclip.copy(ques)
+            #     else:
+            #         pass
             st.write(ques)
             st.write("")
-
+            
             btn_col = st.columns((0.6,0.6,3))
             with btn_col[0]:
                 ans_btn = st.button("解答")
