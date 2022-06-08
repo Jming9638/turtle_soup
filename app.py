@@ -2,18 +2,18 @@ import streamlit as st
 import pandas as pd
 import pyperclip
 import basehash
-import os
 
 from module.sidebar import sidebar
 
-os.environ['STREAMLIT_THEME_BASE'] = 'light'
+if 'code' not in st.session_state:
+    st.session_state['code'] = ""
 
 def run():
     st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
     col = st.columns((0.5,0.5,0.5,0.5))
     with col[0]:
         st.title("海龟汤")
-    df = pd.read_excel("海龟汤_2.xlsx")
+    df = pd.read_excel("./data/海龟汤_2.xlsx")
     q_total = df.shape[0]
     sidebar(q_total)
     
@@ -26,15 +26,16 @@ def run():
     col2 = st.columns([1.4,3])
     with col2[0]:
         input_code = st.text_input("Input your code:")
-    # with col2[1]:
-    #     st.subheader("")
-    #     st.write("")
-    #     q_btn = st.button("提取")
+        st.session_state['code'] = input_code
+    with col2[1]:
+        st.subheader("")
+        st.write("")
+        q_btn = st.button("提取")
         
-    if input_code != "": # or q_btn:
+    if st.session_state['code'] != "" or q_btn:
         try:
             hash_fn = basehash.base36()
-            idx = hash_fn.unhash(input_code)
+            idx = hash_fn.unhash(st.session_state['code'])
             title = df['title'][idx]
             ques = df['ques'][idx]
             ans = df['ans'][idx]
