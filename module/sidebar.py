@@ -10,6 +10,10 @@ if 'button' not in st.session_state:
     st.session_state['button'] = ""
 if 'rancount' not in st.session_state:
     st.session_state['rancount'] = 0
+if 'multicount' not in st.session_state:
+    st.session_state['multicount'] = 0
+if 'multicode' not in st.session_state:
+    st.session_state['multicode'] = ""
 
 def sidebar(q_total):
     hash_fn = basehash.base36()
@@ -61,12 +65,18 @@ def sidebar(q_total):
             multi_col = st.columns((2,1))
             with multi_col[0]:
                 gen_input = st.number_input("生成数：", min_value=2, max_value=15, step=1)
-            # with multi_col[1]:
-            #     st.subheader("")
-            #     st.write("")
-            #     multi_btn = st.button("生成")
+            with multi_col[1]:
+                st.subheader("")
+                st.write("")
+                multi_btn = st.button("生成")
                 
-            if gen_input is not None:
+            multi_seq = st.session_state['multicount']
+            if multi_btn:
+                st.session_state['multicount'] += 1
+            else:
+                pass
+                
+            if gen_input is not None and multi_seq < st.session_state['multicount']:
                 rand_list = random.sample(range(q_total), gen_input)
                 encoded_list = []
                 for randnum in rand_list:
@@ -75,7 +85,14 @@ def sidebar(q_total):
                     encoded_list.append(hash_value)
                     
                 str_list = ", ".join(encoded_list)
-                st.markdown("Your code list: **{}**".format(str_list), unsafe_allow_html=True)
+                st.session_state['multicode'] = str_list
+                st.markdown("Your code list: **{}**".format(st.session_state['multicode']), unsafe_allow_html=True)
+                
+            elif gen_input is not None and multi_seq == st.session_state['multicount'] and multi_seq > 0:
+                st.markdown("Your code list: **{}**".format(st.session_state['multicode']), unsafe_allow_html=True)
+                
+            else:
+                pass
         
         #-------------------Rules-------------------#
         st.subheader("游戏规则：")

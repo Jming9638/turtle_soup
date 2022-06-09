@@ -13,6 +13,10 @@ if 'button' not in st.session_state:
     st.session_state['button'] = ""
 if 'rancount' not in st.session_state:
     st.session_state['rancount'] = 0
+if 'multicount' not in st.session_state:
+    st.session_state['multicount'] = 0
+if 'multicode' not in st.session_state:
+    st.session_state['multicode'] = ""
 
 def run():
     st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
