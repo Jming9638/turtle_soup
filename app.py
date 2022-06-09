@@ -7,6 +7,12 @@ from module.sidebar import sidebar
 
 if 'code' not in st.session_state:
     st.session_state['code'] = ""
+if 'num' not in st.session_state:
+    st.session_state['num'] = ""
+if 'button' not in st.session_state:
+    st.session_state['button'] = ""
+if 'rancount' not in st.session_state:
+    st.session_state['rancount'] = 0
 
 def run():
     st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
