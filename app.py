@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pyperclip
+# import pyperclip
 import basehash
 
 from module.sidebar import sidebar
@@ -23,14 +23,30 @@ def run():
         st.write("总题库：", str(q_total))
     st.caption("⚠️以下内容纯属虚构，如有不适，请立即停止游戏。")
     
-    col2 = st.columns([1.4,3])
+    col2 = st.columns([1,1,0.5])
     with col2[0]:
         input_code = st.text_input("Input your code:")
+        
+    sp_code = input_code.replace(" ", "").split(",")
+    split_code = []
+    for cd in sp_code:
+        if cd not in split_code and cd != "":
+            split_code.append(cd)
+            
+    if len(split_code) > 1:
+        with col2[1]:
+            selected_code = st.selectbox("Select a code:", split_code)
+        with col2[2]:
+            st.subheader("")
+            st.write("")
+            q_btn = st.button("提取")
+        st.session_state['code'] = selected_code
+    else:
+        with col2[1]:
+            st.subheader("")
+            st.write("")
+            q_btn = st.button("提取")
         st.session_state['code'] = input_code
-    with col2[1]:
-        st.subheader("")
-        st.write("")
-        q_btn = st.button("提取")
         
     if st.session_state['code'] != "" or q_btn:
         try:
