@@ -1,19 +1,18 @@
-from audioop import mul
 import streamlit as st
 from streamlit.components.v1 import html
 import basehash
 import random
 
-if 'num' not in st.session_state:
-    st.session_state['num'] = ""
-if 'button' not in st.session_state:
-    st.session_state['button'] = ""
-if 'rancount' not in st.session_state:
-    st.session_state['rancount'] = 0
-if 'multicount' not in st.session_state:
-    st.session_state['multicount'] = 0
-if 'multicode' not in st.session_state:
-    st.session_state['multicode'] = ""
+# if 'num' not in st.session_state:
+#     st.session_state['num'] = ""
+# if 'button' not in st.session_state:
+#     st.session_state['button'] = ""
+# if 'rancount' not in st.session_state:
+#     st.session_state['rancount'] = 0
+# if 'multicount' not in st.session_state:
+#     st.session_state['multicount'] = 0
+# if 'multicode' not in st.session_state:
+#     st.session_state['multicode'] = ""
 
 def sidebar(q_total):
     hash_fn = basehash.base36()
@@ -22,7 +21,7 @@ def sidebar(q_total):
         gen_mode = st.radio(label="Generator Mode", options=("单个生成", "多个生成"), horizontal=True)
         
         if gen_mode == "单个生成":
-            input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total))
+            input_num = st.text_input("Please input an integer between 1 - {}.".format(q_total), value=st.session_state['num'])
             st.session_state['num'] = input_num
             gen_col = st.columns((0.8,1.2,1))
             with gen_col[0]:
@@ -63,8 +62,12 @@ def sidebar(q_total):
         
         elif gen_mode == "多个生成":
             multi_col = st.columns((2,1))
+            if st.session_state['multiinput'] == 0:
+                val = 2
+            else:
+                val = st.session_state['multiinput']
             with multi_col[0]:
-                gen_input = st.number_input("生成数：", min_value=2, max_value=15, step=1)
+                gen_input = st.number_input("生成数：", min_value=2, max_value=15, step=1, value=val)
             with multi_col[1]:
                 st.subheader("")
                 st.write("")
@@ -77,6 +80,7 @@ def sidebar(q_total):
                 pass
                 
             if gen_input is not None and multi_seq < st.session_state['multicount']:
+                st.session_state['multiinput'] = gen_input
                 rand_list = random.sample(range(q_total), gen_input)
                 encoded_list = []
                 for randnum in rand_list:

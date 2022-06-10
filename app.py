@@ -15,6 +15,8 @@ if 'rancount' not in st.session_state:
     st.session_state['rancount'] = 0
 if 'multicount' not in st.session_state:
     st.session_state['multicount'] = 0
+if 'multiinput' not in st.session_state:
+    st.session_state['multiinput'] = 0
 if 'multicode' not in st.session_state:
     st.session_state['multicode'] = ""
 
@@ -31,7 +33,7 @@ def run():
         st.header("")
         st.write("")
         st.write("总题库：", str(q_total))
-    st.caption("⚠️以下内容纯属虚构，如有不适，请立即停止游戏。")
+    st.caption("⚠️ 以下内容纯属虚构，如有不适，请立即停止游戏。")
     
     col2 = st.columns([1,1,0.5])
     with col2[0]:
@@ -94,7 +96,7 @@ def run():
             else:
                 pass
         except:
-            st.write("⚠️Error code. Please find your administrator or get your code at the sidebar.")
+            st.write("⚠️ Error code. Please find your administrator or get your code at the sidebar.")
     else:
         pass
             
