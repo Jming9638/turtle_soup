@@ -33,6 +33,7 @@ def run():
         st.header("")
         st.write("")
         st.write("总题库：", str(q_total))
+    st.caption("为了有更好的体验，推荐使用电脑的浏览器操作。")
     st.caption("⚠️ 以下内容纯属虚构，如有不适，请立即停止游戏。")
     
     col2 = st.columns([1,1,0.5])

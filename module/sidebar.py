@@ -1,18 +1,6 @@
 import streamlit as st
-from streamlit.components.v1 import html
 import basehash
 import random
-
-# if 'num' not in st.session_state:
-#     st.session_state['num'] = ""
-# if 'button' not in st.session_state:
-#     st.session_state['button'] = ""
-# if 'rancount' not in st.session_state:
-#     st.session_state['rancount'] = 0
-# if 'multicount' not in st.session_state:
-#     st.session_state['multicount'] = 0
-# if 'multicode' not in st.session_state:
-#     st.session_state['multicode'] = ""
 
 def sidebar(q_total):
     hash_fn = basehash.base36()
