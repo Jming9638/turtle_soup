@@ -19,6 +19,8 @@ if 'multiinput' not in st.session_state:
     st.session_state['multiinput'] = 0
 if 'multicode' not in st.session_state:
     st.session_state['multicode'] = ""
+if 'codeinput' not in st.session_state:
+    st.session_state['codeinput'] = ""
 
 def run():
     st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
@@ -38,9 +40,10 @@ def run():
     
     col2 = st.columns([1,1,0.5])
     with col2[0]:
-        input_code = st.text_input("Input your code:")
+        input_code = st.text_input("Input your code:", value=st.session_state['codeinput'])
+        st.session_state['codeinput'] = input_code
         
-    sp_code = input_code.replace(" ", "").split(",")
+    sp_code = st.session_state['codeinput'].replace(" ", "").split(",")
     split_code = []
     for cd in sp_code:
         if cd not in split_code and cd != "":
@@ -59,7 +62,7 @@ def run():
             st.subheader("")
             st.write("")
             q_btn = st.button("提取")
-        st.session_state['code'] = input_code
+        st.session_state['code'] = st.session_state['codeinput']
         
     if st.session_state['code'] != "" or q_btn:
         try:
