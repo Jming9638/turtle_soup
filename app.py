@@ -23,10 +23,10 @@ if 'codeinput' not in st.session_state:
     st.session_state['codeinput'] = ""
 
 def run():
-    st.set_page_config(page_title="🐢 海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
+    st.set_page_config(page_title="海龟汤", page_icon="🎮", initial_sidebar_state="expanded") # collapsed, expanded
     col = st.columns((0.5,0.5,0.5,0.5))
     with col[0]:
-        st.title("海龟汤")
+        st.title("🐢 海龟汤")
     df = pd.read_excel("./data/海龟汤_2.xlsx")
     q_total = df.shape[0]
     sidebar(q_total)
